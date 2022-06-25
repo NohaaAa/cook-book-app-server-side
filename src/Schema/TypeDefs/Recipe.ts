@@ -1,1 +1,35 @@
-import {GraphQLObjectType, GraphQLID, GraphQLString} from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } from 'graphql';
+
+export const RecipeType = new GraphQLObjectType({
+    name: 'Recipe',
+    fields: () => ({
+        recipe_id: {type: GraphQLID},
+        recipe_name: {type: GraphQLString},
+        recipe_description: {type: GraphQLString},
+        recipe_images: {type: GraphQLString},
+        recipe_ingredientParts: {type: GraphQLString},
+        recipe_ingredientQuantities: {type: GraphQLString},
+        recipe_instructions: {type: GraphQLString},
+        recipe_category: {type: GraphQLString},
+        recipe_cookTime: {type: GraphQLString},
+        recipe_prepTime: {type: GraphQLString},
+        recipe_totalTime: {type: GraphQLString},
+        recipe_datePublished: {type: GraphQLString},
+        recipe_aggregateRating: {type: GraphQLInt},
+        recipe_reviewCount: {type: GraphQLInt},
+        recipe_calories: {type: GraphQLInt},
+        recipe_fatContent: {type: GraphQLString},
+        recipe_saturatedFatContent: {type: GraphQLString},
+        recipe_cholesterolContent: {type: GraphQLString},
+        recipe_sodiumContent: {type: GraphQLString},
+        recipe_proteinContent: {type: GraphQLString}, 
+        recipe_sugarContent: {type: GraphQLString},
+        recipe_carbohydrateContent: {type: GraphQLString},
+        recipe_fiberContent: {type: GraphQLString},
+        recipe_servings: {type: GraphQLInt},
+        recipe_yeild: {type: GraphQLString},
+        recipe_authorId: {type: GraphQLInt},
+        recipe_authorName: {type: GraphQLString},
+        keywords: {type: GraphQLString},
+    })
+});

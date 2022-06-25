@@ -8,8 +8,8 @@ import { Users
     type: MessageType,
     args: {
         userId: {type: GraphQLID},
-       oldPassword: {type: GraphQLString},
-       newPassword: {type: GraphQLString}
+        oldPassword: {type: GraphQLString},
+        newPassword: {type: GraphQLString}
     },
     async resolve(parent: any, args: any) {
         const {userId, oldPassword, newPassword} = args;
