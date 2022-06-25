@@ -24,8 +24,8 @@ const main = async () => {
         schema,
         graphiql: true
     }))
-    app.listen(3001, () => {
-        console.log('Server started on port 3001');
+    app.listen(5000, () => {
+        console.log('Server started on port 5000');
     });
 }
 
