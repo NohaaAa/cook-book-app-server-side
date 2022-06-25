@@ -2,9 +2,10 @@ import { UserType } from "../TypeDefs/User";
 import { GraphQLString, GraphQLID } from 'graphql';
 import { Users
  } from "../../Entities/Users";
+ import { MessageType } from "../TypeDefs/Messages";
 
  export const UPDATE_PASSWORD = {
-    type: UserType,
+    type: MessageType,
     args: {
         userId: {type: GraphQLID},
        oldPassword: {type: GraphQLString},
@@ -13,9 +14,16 @@ import { Users
     async resolve(parent: any, args: any) {
         const {userId, oldPassword, newPassword} = args;
         const user = await Users.findOne({where: {userId}});
+        if(!user) {
+            throw new Error ("User not found");
+        }
         const userPassword = user?.userPassword;
         if (userPassword === oldPassword) {
            await Users.update({userId}, {userPassword: newPassword});
+           return {
+            successful: true,
+            message: "Password updated successfully!"
+           }
         } else {
             throw new Error("PASSWORDS ARE NOT MATCH!!");
         }
@@ -36,13 +44,16 @@ export const CREATE_USER = {
     }   
 }
 export const DELETE_USER = {
-    type: UserType,
+    type: MessageType,
     args: {
        userId: {type: GraphQLID}
         },
         async resolve(parent: any, args: any) {
         const {userId} = args;
         await Users.delete(userId);
-        return args;
+        return {
+            successful: true,
+            message: "User deleted successfully!"
+        }
     }   
 }
